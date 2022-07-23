@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Test</title>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+	<link rel="stylesheet" href="./style.css">
+</head>
+<body onload="setLyrics()">
+	<div class="wrapper">
+		<div class="options-wrapper">
+			<div id="theme-options">
+				<select name="theme" id="theme-select">
+					<option value="">Theme</option>
+					<option value="frost">Frost</option>
+					<option value="vibrant">Vibrant</option>
+					<option value="grim">Grim</option>
+					<option value="bright">Bright</option>
+					<option value="lospecPalette">Lospec Palette</option>
+				</select>
+				<input type="text" id="palette" name="palette"><br>
+			</div>
+			<div id="syll">
+				<label for="syllable">Syllables</label>
+				<select name="syllable" id="syllable">
+					<option value="false">No</option>
+					<option value="true">Yes</option>
+				</select>
+			</div>
+		</div>
+<textarea id="lyin">
+</textarea>
+
+<div id="sylc">
+</div>
+<div id="lyout">
+</div>
+		<button onclick="copyHTML()" type="button" id="copy-button">Copy HTML</button>
+	</div>
+	<script>
+		function setLyrics() {
+			let lyricIn = document.getElementById('lyin');
+			lyricIn.innerHTML = window.localStorage.getItem('lyrics')
+		}
+		function copyHTML() {
+			var copyText = document.getElementById("lyout");
+			copyText.select();
+			copyText.setSelectionRange(0, 99999);
+			navigator.clipboard.writeText(copyText.value);
+			alert("Copied the HTML");
+		}
+	</script>
+	<script type="module" src="./index.js"></script>
+</body>
+</html>
